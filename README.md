@@ -3,14 +3,23 @@ Repository for the paper "Vector Embeddings by Sequence Similarity and Context f
 
 ## Repository Structure
 cDNA-Vector-Embeddings/
+
 ├── data/
+
 │ ├── alternative_splicing_human_10541.fasta
+
 │ ├── 3D_Structure_1_200_seq_length _17552.fasta
+
 │ ├── binding_site_28052.fasta
+
 ├── Context_Embeddings_3D_Plot_Generation_Script.ipynb
+
 ├── README.md
+
 ├── requirements.txt
+
 └── .gitignore
+
 
 
 ## Contents
