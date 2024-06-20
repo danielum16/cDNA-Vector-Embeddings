@@ -94,4 +94,21 @@ The embeddings are visualized using a 3D scatter plot, where each point represen
 
 If you wish to contribute to this project, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
+## Mendeley links:
+
+https://data.mendeley.com/datasets/jrvm4bbc5h/1
+https://data.mendeley.com/datasets/cr9jf45xrr/2
+https://data.mendeley.com/datasets/ybz8tcvnv9/2
+
+### Data availability statement
+The datasets for this investigation are available in the Mendeley Data repository, itemized below. Additional data not in the aforementioned repository are available from the corresponding author upon request. 
+
+### Mendeley data
+Context embeddings trained on short sequence FASTA files with binding site on Mendeley Data are associated with “FIGURE 4: Context embeddings trained on short-sequence FASTA files with binding site – N = 28,052” for “Vector Embeddings by Sequence Similarity and Context for Improved Compression, Similarity Search, Clustering, Organization, and Manipulation of cDNA Libraries” by Daniel H. Um et al.
+
+Context embeddings trained on short sequence FASTA files for human alternative splicing on Mendeley Data are associated with “FIGURE 5: Context embeddings trained on short-sequence FASTA files for human alternative splicing – n = 10,541” for “Vector Embeddings by Sequence Similarity and Context for Improved Compression, Similarity Search, Clustering, Organization, and Manipulation of cDNA Libraries” by Daniel H. Um et al.
+
+Context embeddings trained on short sequence FASTA files with 3D structures on Mendeley Data are associated with “FIGURE 3: Context embeddings trained on short-sequence FASTA files with 3D structures – N = 17552” for “Vector Embeddings by Sequence Similarity and Context for Improved Compression, Similarity Search, Clustering, Organization, and Manipulation of cDNA Libraries” by Daniel H. Um et al.
+
+
 
