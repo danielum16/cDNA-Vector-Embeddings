@@ -12,6 +12,14 @@ cDNA-Vector-Embeddings/
 
 │ ├── binding_site_28052.fasta
 
+├── outputs/
+
+│ ├── 3D_plot_FASTA_files_for_human_alt_splicing.png
+
+│ ├── 3D_plot_FASTA_files_with_3D_structures.png
+
+│ ├── 3D_plot_FASTA_with_binding_site.png
+
 ├── Context_Embeddings_3D_Plot_Generation_Script.ipynb
 
 ├── README.md
@@ -19,7 +27,6 @@ cDNA-Vector-Embeddings/
 ├── requirements.txt
 
 └── .gitignore
-
 
 
 ## Contents
