@@ -12,7 +12,7 @@ cDNA-Vector-Embeddings/
 
 │ ├── binding_site_28052.fasta
 
-├── outputs/
+├── output/
 
 │ ├── 3D_plot_FASTA_files_for_human_alt_splicing.png
 
