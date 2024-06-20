@@ -94,8 +94,4 @@ The embeddings are visualized using a 3D scatter plot, where each point represen
 
 If you wish to contribute to this project, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-## Acknowledgements
-
-I would like to thank Professor David Knowles and Professor Gail Kaiser for their guidance and mentorship. I would also like to recognize Shouvik Mani, Jincheng Xu, Leslie Ramos, Ryan Abis, and Jennifer Choi-Um for proofreading the manuscript.
-
 
