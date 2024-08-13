@@ -20,7 +20,11 @@ cDNA-Vector-Embeddings/
 
 │ ├── 3D_plot_FASTA_with_binding_site.png
 
-├── Context_Embeddings_3D_Plot_Generation_Script.ipynb
+├── Quickstart_Embeddings_3D_Plot_Generation_Script.ipynb
+
+├── Encoder_Mapper_Vectorize_Packaged.ipynb
+
+├── Test_Classes_Methods.ipynb
 
 ├── README.md
 
