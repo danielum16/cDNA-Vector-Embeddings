@@ -1,11 +1,8 @@
 from heapq import heappop, heappush
-from itertools import combinations, permutations
-import sys
+from itertools import combinations
 import numpy as np
 
-sys.path.append("/Users/danielum/Documents/MSCS/Spring_2022/COMS_4762_COMS_E6901/VG/VG")
 from library.reader import Reader
-from PineConeExperiments.kmeans import Cluster
 
 
 class Mapper:

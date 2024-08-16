@@ -1,6 +1,4 @@
-from fasta_one_hot_encoder import FastaOneHotEncoder
 from library import reader
-import tensorflow_io as tfio
 
 __mapping = {
     "A": [1, 0, 0, 0],

@@ -1,4 +1,3 @@
-import enum
 from library import reader
 import numpy as np
 import warnings
