@@ -24,8 +24,6 @@ cDNA-Vector-Embeddings/
 
 ├── Encoder_Mapper_Vectorize_Packaged.ipynb
 
-├── Test_Classes_Methods.ipynb
-
 ├── README.md
 
 ├── requirements.txt
