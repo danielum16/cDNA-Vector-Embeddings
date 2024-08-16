@@ -37,10 +37,11 @@ cDNA-Vector-Embeddings/
 - `output/`: Directory containing the outputted charts.
 - `Quickstart_Embeddings_3D_Plot_Generation_Script.ipynb`: Notebook to test the chart producing aspect of the code (downstream).
 - `Encoder_Mapper_Vectorize_Packaged.ipynb`: Notebook to demonstrate use of all functions/algorithms in this research paper (wrapped into a package).
-- `Test_Classes_Methods.ipynb`: Notebook to test all methods and functions (for development purposes).
 - `README.md`: This file, providing an overview of the repository.
 - `requirements.txt`: List of dependencies required to run the notebook.
 - `.gitignore`: Specifies files and directories to be ignored by Git.
+
+(Note: encoder.py, mapper.py, oneHotEncode.py, and vectorize.py is the code used to build the package, so we have a notebook provided to test the package called Encoder_Mapper_Vectorize_Packaged.ipynb)
 
 ## Getting Started
 
