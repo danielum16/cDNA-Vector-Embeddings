@@ -3,10 +3,6 @@ class Encoder:
     __mapping = {"A": 8, "C": 4, "G": 2, "T": 1, "N": 15, "E": 0}
     __rmapping = {8: "A", 4: "C", 2: "G", 1: "T", 15: "N", 0: "E"}
 
-    # paper
-    # __mapping = {"A": 0, "C": 1, "G": 2, "T": 3}
-    # __rmapping = {0: "A", 1: "C", 2: "G", 3: "T"}
-
     def __init__(self):
         pass
 
@@ -27,14 +23,12 @@ class Encoder:
         byte_array = N.to_bytes(4, "little")
 
         for sequence, index in cluster:
-            length = (len(sequence) + 1) // 2  # one-hot encoding
-            # length = (len(sequence) + 4) // 4 # paper
+            length = (len(sequence) + 1) // 2
 
             es = cls.encode_sequence(sequence).to_bytes(length, "little")
             ec.append(es)
             indices.append(index)
             lengths.append(length)
-            # print(sequence, int.from_bytes(b, 'little', signed=False))
 
         for index in indices:
             byte_array += index.to_bytes(4, "little")
@@ -57,11 +51,6 @@ class Encoder:
     @classmethod
     def decode_sequence(cls, val):
         import math
-
-        # output_sequence = []
-        # for base in sequence:
-        #     output_sequence.append(map_base(base))
-        # return output_sequence
         sequence = ""
         n = math.floor(math.log(val) / math.log(16))
 

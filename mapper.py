@@ -5,10 +5,7 @@ import warnings
 import gzip
 
 import math
-import zlib
 from encoder import Encoder
-
-from PineConeExperiments.kmeans import Cluster
 
 
 class Mapper:
@@ -119,43 +116,10 @@ def encode_base(base):
 
 
 def encode_sequence(sequence):
-    # output_sequence = []
-    # for base in sequence:
-    #     output_sequence.append(map_base(base))
-    # return output_sequence
     val = 0
     for i, base in enumerate(sequence):
         val += encode_base(base) * (16**i)
     return val
-    # to reverse int(tmp,2)
-
-
-# def encode_cluster(cluster_of_sequences):
-#     output_cluster = []
-#     output_indexes = []
-
-#     for sequences in cluster_of_sequences:
-#         inner_list = []
-#         inner_list_index = []
-#         for sequence, i in sequences:
-#             # encoded_sequence is an int
-#             encoded_sequence = encode_sequence(sequence)
-#             # compressed_data = zlib.compress
-#             bytes_sequence = encoded_sequence.to_bytes(
-#                 (encoded_sequence.bit_length() + 7) // 8, byteorder="little"
-#             )
-#             inner_list.append(bytes_sequence)
-#             inner_list_index.append(i)
-#         output_cluster.append(inner_list)
-#         output_indexes.append(inner_list_index)
-#     return output_cluster, output_indexes
-
-
-# def encode_cluster(cluster, sequences):
-#     output_cluster = []
-#     for _, index in cluster:
-#         output_cluster.append(encode_sequence(sequences[index]))
-#     return output_cluster
 
 
 def groupings(S, sequences):
@@ -179,12 +143,6 @@ def compress_clusters(int_binary_cluster):
     comp = []
     for int_sequences in int_binary_cluster:
         comp.append(gzip.compress(int_sequences))
-        # list() to reverse, alt is bytearray
-        # inner_list = []
-        # for int_sequence, i in int_sequences:
-        #     inner_list.append(gzip.compress(bin(int_sequence)), gzip.compress(bin(i)))
-        #     # to reverse int(tmp,2)
-        # compressed.append(inner_list)
     return comp
 
 
@@ -211,10 +169,6 @@ def decode_base(int_base):
 
 
 def decode_sequence(val):
-    # output_sequence = []
-    # for base in sequence:
-    #     output_sequence.append(map_base(base))
-    # return output_sequence
     sequence = ""
     n = math.floor(math.log(val) / math.log(16))
 
@@ -225,7 +179,6 @@ def decode_sequence(val):
         val = next_layer
 
     return sequence
-    # to reverse int(tmp,2)
 
 
 def decode_cluster(output_cluster, output_indexes):
@@ -259,83 +212,19 @@ def convert(num: int) -> list:
     return numlist
 
 
-# def encode_cluster(cluster, sequences):
-#     output_cluster = []
-#     for _, index in cluster:
-#         output_cluster.append(encode_sequence(sequences[index]))
-#     return output_cluster
-
-
-# def decode_groupings(S, sequences):
-#     clust = []
-#     # S = cluster(mapper.hfs)
-#     for x, V in enumerate(S):
-#         sub_list = []
-#         if x > 500:
-#             break
-#         for _, i in transform(V):
-#             sub_list.append((sequences[i], i))
-#         clust.append(sub_list)
-#     return clust
-
-
-# convert list of integers into byte array -> should be compatible with gzip
-# Implement reverse for decompress
-
-
 if __name__ == "__main__":
-    # print(Mapper.encode('GT'))
     R = reader.Reader()
     mp, count, total_len = R.read_fasta("sample/sandmouse.fa")
     sequences_dict_items = mp.values()
     sequences = list(sequences_dict_items)
 
-    # unclustered_sequences_bytes = bytearray([x.encode() for x in sequences])
-    # unclustered_compressed = gzip.compress(sequences)
-    # f_out = gzip.open("/unclustered.gz", "wb")
-    # f_out.writelines(unclustered_compressed)
-    # f_out.close()
-
     mapper = Mapper(sequences, 2, 3)
-    # print(mapper.hfs)
-
-    # for v, i in transform(mapper.hfs):
-    #     print(sequences[i], v)
     groups_of_similar_kmers = cluster(mapper.hfs)
 
     cluster_of_sequences = groupings(groups_of_similar_kmers, sequences)
-    # clustered_compressed = gzip.compress(cluster_of_sequences)
-    # f_out = gzip.open("/clustered.gz", "wb")
-    # f_out.writelines(clustered_compressed)
-    # f_out.close()
 
-    # print(np.shape(cluster_of_sequences))
-    # int_binary_cluster, output_indexes = encode_cluster(cluster_of_sequences)
-    # print(int_binary_cluster)
-    # gzipped_int_binary_cluster = zlib.compress(int_binary_cluster)
-    # with gzip.open("clustered_compressed.gz", "wb") as f:
-    #     f.write(gzipped_int_binary_cluster)
-    # f.close()
-
-    # compress:
     c = Encoder.encode_clusters(cluster_of_sequences)
     compressed_cluster = compress_clusters(c)
     print(compressed_cluster)
     size = get_size_compressed(compressed_cluster)
     print(size)
-
-    # decompress:
-    # TODO
-    # decompress_clusters(compressed_cluster)
-
-    # # print(compressed_cluster)
-    # print(cluster_of_sequences == decode_cluster(int_binary_cluster, output_indexes))
-    # print(cluster_of_sequences)
-
-    # print(clusters)
-
-    # # C = Cluster()
-    # # cluster_set = C.k_means(mapper.hfs, 0.5)
-    # # print(cluster_set)
-    # # print(kmeans(mapper.hfs, 2))
-    # print(mindist(np.array([0, 1]), np.array([[1, 2], [3, 4]])))
