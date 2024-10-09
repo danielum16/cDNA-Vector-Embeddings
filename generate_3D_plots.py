@@ -19,9 +19,10 @@ def plot_3d_data(data, title):
     ax.set_title(title)
 
     for amino_acid, coordinates in data.items():
-        x, y, z = coordinates
-        color = color_mp.get(amino_acid, 'k')  # Default to black if not found in color_mp
-        ax.scatter(x, y, z, c=color, label=amino_acid)
+        if amino_acid not in ['U', 'Z', 'B']:  # Exclude 'U', 'Z', 'B'
+            x, y, z = coordinates
+            color = color_mp.get(amino_acid, 'k')  # Default to black if not found in color_mp
+            ax.scatter(x, y, z, c=color, label=amino_acid)
 
     ax.set_xlabel('X')
     ax.set_ylabel('Y')
@@ -64,10 +65,7 @@ bindingsite_data = {
     'T': [-2.8, -3.8, -2.0],
     'V': [-2.5, -3.75, -3.35],
     'W': [-2.7, -2.3, -1.95],
-    'Y': [-3.2, -4.25, -2.4],
-    'Z': [-2.8, -3.1, -1.5],
-    'U': [-4.0, -3.0, -1.5],
-    'B': [-3.75, -3.45, -1.6]
+    'Y': [-3.2, -4.25, -2.4]
 }
 
 alternativesplicing_data = {
@@ -90,7 +88,6 @@ alternativesplicing_data = {
     'A': [-1.8, -2.6, 2.2],
     'P': [-1.75, -2.65, 2.25],
     'K': [-1.5, -2.6, -2.25],
-    'U': [-3.5, -2.2, -1.6],
     'N': [0.0, -2.75, -2.0]
 }
 
@@ -104,7 +101,6 @@ threeDprotein_data = {
     'D': [-1.0, -1.4, -2.5],
     'N': [-1.0, -1.45, 0.0],
     'Y': [-0.95, -1.4, -0.0],
-    'U': [-1.0, -1.6, -2.5],
     'A': [-1.0, -1.25, -0.75],
     'S': [-1.2, -1.4, -0.0],
     'T': [-1.3, -1.45, 0.05],
@@ -115,8 +111,7 @@ threeDprotein_data = {
     'C': [-1.8, -1.45, -0.75],
     'W': [-2.05, -1.4, -0.85],
     'E': [-2.05, -1.6, -2.5],
-    'H': [-2.7, -1.6, -0.55],
-    'Z': [-2.85, -1.4, -2.45]
+    'H': [-2.7, -1.6, -0.55]
 }
 
 # Plot all three datasets
