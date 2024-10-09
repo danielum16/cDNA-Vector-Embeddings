@@ -1,15 +1,47 @@
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 
 # Enable interactive mode for rotatable plots
 plt.ion()  # Enables interactive mode
 
 # Color mapping
 color_mp = {
-    'D': 'b', 'E': 'b',   # Blue for acidic amino acids
-    'R': 'r', 'K': 'r', 'H': 'r',  # Red for basic amino acids
+    'D': 'b', 'E': 'b',   # Blue for negative charge
+    'R': 'r', 'K': 'r', 'H': 'r',  # Red for positive charge
     'N': 'y', 'Q': 'y', 'S': 'y', 'T': 'y', 'Y': 'y',  # Yellow for polar uncharged amino acids
     'A': 'g', 'V': 'g', 'L': 'g', 'I': 'g', 'P': 'g', 'F': 'g', 'M': 'g', 'W': 'g', 'C': 'g', 'G': 'g'  # Green for nonpolar amino acids
 }
+
+# Function to plot the 3D data
+def plot_3d_data(data, title):
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.set_title(title)
+
+    for amino_acid, coordinates in data.items():
+        x, y, z = coordinates
+        color = color_mp.get(amino_acid, 'k')  # Default to black if not found in color_mp
+        ax.scatter(x, y, z, c=color, label=amino_acid)
+
+    ax.set_xlabel('X')
+    ax.set_ylabel('Y')
+    ax.set_zlabel('Z')
+
+    # Use the legend with unique labels
+    handles, labels = ax.get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    ax.legend(by_label.values(), by_label.keys(), loc='upper left', bbox_to_anchor=(1.05, 1), ncol=2)
+
+    # Add color key for the meanings of the colors
+    legend_elements = [
+        Line2D([0], [0], marker='o', color='w', label='Negative charge (D, E)', markerfacecolor='b', markersize=10),
+        Line2D([0], [0], marker='o', color='w', label='Positive charge (R, K, H)', markerfacecolor='r', markersize=10),
+        Line2D([0], [0], marker='o', color='w', label='Polar uncharged (N, Q, S, T, Y)', markerfacecolor='y', markersize=10),
+        Line2D([0], [0], marker='o', color='w', label='Nonpolar (A, V, L, I, P, F, M, W, C, G)', markerfacecolor='g', markersize=10),
+    ]
+    ax.legend(handles=legend_elements, loc='upper left', bbox_to_anchor=(1.05, 0.7), ncol=1)
+
+    plt.show()
 
 # Your data
 bindingsite_data = {
@@ -86,28 +118,6 @@ threeDprotein_data = {
     'H': [-2.7, -1.6, -0.55],
     'Z': [-2.85, -1.4, -2.45]
 }
-
-# Function to plot the 3D data
-def plot_3d_data(data, title):
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
-    ax.set_title(title)
-
-    for amino_acid, coordinates in data.items():
-        x, y, z = coordinates
-        color = color_mp.get(amino_acid, 'k')  # Default to black if not found in color_mp
-        ax.scatter(x, y, z, c=color, label=amino_acid)
-
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
-
-    # Use the legend with unique labels
-    handles, labels = ax.get_legend_handles_labels()
-    by_label = dict(zip(labels, handles))
-    ax.legend(by_label.values(), by_label.keys(), loc='upper left', bbox_to_anchor=(1.05, 1), ncol=2)
-
-    plt.show()
 
 # Plot all three datasets
 plot_3d_data(bindingsite_data, 'Binding Site Data')
